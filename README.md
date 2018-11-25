@@ -2,9 +2,9 @@
 
 Crypto Currency Calculator
 
-## Features
+API: [CoinCap.io](https://github.com/CoinCapDev/CoinCap.io)
 
-> Note: in practice, it is unnecessary to code-split for an app of this size (where each async chunk is only a few kilobytes), nor is it optimal to extract an extra CSS file (which is only 1kb) -- they are used simply because this is a demo app showcasing all the supported features. In real apps, you should always measure and optimize based on your actual app constraints.
+## Features
 
 - Server Side Rendering
   - Vue + vue-router + vuex working together
@@ -17,12 +17,8 @@ Crypto Currency Calculator
   - App manifest
   - Service worker
   - 100/100 Lighthouse score
-- Single-file Vue Components
   - Hot-reload in development
   - CSS extraction for production
-- Animation
-  - Effects when switching route views
-  - Real-time list updates with FLIP Animation
 
 ## Architecture Overview
 

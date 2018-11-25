@@ -1,7 +1,7 @@
 import {mapActions, mapState} from 'vuex';
 
-import HeaderComponent from '../header/component.vue';
-import ChartComponent from '../chart/component.vue';
+import HeaderComponent from '../../components/header/component.vue';
+import ChartComponent from '../../components/chart/component.vue';
 
 export default {
   components: {
