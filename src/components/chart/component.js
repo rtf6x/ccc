@@ -15,7 +15,7 @@ export default {
       const minYpx = 140;
       const maxYpx = 10;
       const svgWidth = 238;
-      const pointsCount = 50;
+      const pointsCount = state.currency_histories[this.cid].length;
       const spaceBetweenPoints = svgWidth / pointsCount;
       let line = 'M 9.5,';
 
