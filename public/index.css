@@ -1,0 +1,43 @@
+@font-face {
+  font-family: 'OpenSans';
+  src: url('/public/fonts/OpenSans-Light.ttf'),
+  url('/public/fonts/OpenSans-Light-webfont.woff') format("woff"),
+  url('/public/fonts/OpenSans-Regular.eot?#iefix') format("embedded-opentype");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+  line-height: normal;
+  letter-spacing: normal;
+  margin: 0;
+  padding: 0;
+  -webkit-text-size-adjust: none;
+  overflow-y: auto !important;
+}
+
+body {
+  height: 100%;
+  line-height: normal;
+  letter-spacing: normal;
+  margin: 0;
+  padding: 0;
+  -webkit-text-size-adjust: none;
+  font-family: 'OpenSans', sans-serif;
+  font-size: 14px;
+  background-color: #17181b;
+  color: #a0a0a0;
+}
+
+div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, p, blockquote, th, td {
+  margin: 0;
+  padding: 0;
+}
+
+i {
+  display: none;
+}

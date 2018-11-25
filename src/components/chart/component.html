@@ -1,0 +1,9 @@
+<div class="charts-item" v-if="cid && currency_line">
+    <div class="charts-item__title">{{cname}} ({{cid}})</div>
+    <div class="chart">
+        <svg height="150" width="250" xmlns="http://www.w3.org/2000/svg" version="1.1">
+            <defs></defs>
+            <path fill="none" stroke="#cc2c3f" :d="currency_line" stroke-width="3"></path>
+        </svg>
+    </div>
+</div>

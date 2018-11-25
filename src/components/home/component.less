@@ -1,0 +1,115 @@
+.wrapper {
+  height: 100%;
+}
+
+.content {
+  width: 600px;
+  margin: 200px auto;
+  position: relative;
+  background: #111111;
+  border: 1px solid #4F4F4F;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.items {
+  display: flex;
+  align-content: space-between;
+  &__block {
+    flex: 1 1 auto;
+    width: 40%;
+    &-amount {
+      width: 120px;
+    }
+  }
+}
+
+.swap_button {
+  margin: 15px 20px 0;
+  i {
+    cursor: pointer;
+  }
+}
+
+.amount {
+  display: flex;
+  align-content: space-around;
+  justify-content: center;
+  margin: 0 20px 0 0;
+  &__value {
+    font: bold 16px/44px 'OpenSans';
+    height: 56px;
+    width: 50px;
+    padding: 6px 12px;
+    margin: 0 0 20px;
+    border-bottom: 2px solid #ffffffb3;
+    text-align: center;
+    &:hover {
+      border-bottom: 2px solid #fff;
+    }
+  }
+  *::selection {
+    background: transparent;
+    color: #ffffff;
+  }
+  i {
+    cursor: pointer;
+    height: 60px;
+  }
+}
+
+.charts {
+  display: flex;
+}
+
+.popular {
+  &__title {
+    text-align: center;
+    font-weight: bold;
+    padding-bottom: 20px;
+  }
+  &__columns {
+    display: flex;
+  }
+  &__column {
+    padding: 0 20px;
+    flex: 1 0 auto;
+    li {
+      list-style: none;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
+}
+
+.result {
+  padding-top: 20px;
+  text-align: center;
+}
+
+/deep/ .v-select__selections {
+  padding-top: 0 !important;
+}
+
+/deep/ .v-select__slot input {
+  position: relative;
+  top: -12px;
+}
+
+/deep/ .theme--dark.v-list {
+  background: #17181b !important;
+}
+
+/deep/ .v-list__tile.primary--text {
+  background: #444444;
+  color: #000 !important;
+}
+
+/deep/ .theme--dark.v-list .v-list__tile__mask {
+  background: transparent;
+  color: #5f5;
+}
+
+/deep/ .v-input__control .v-input__slot {
+  cursor: default;
+}
