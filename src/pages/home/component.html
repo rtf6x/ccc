@@ -16,7 +16,7 @@
                 <div class="items__block">
                     <v-autocomplete light @change="onChangeCurrency_from" :value="currency_from.id" dark outline :items="currencies"></v-autocomplete>
                     <div>
-                        <p>{{currency_from.price_usd}} USD</p>
+                        <p>{{currency_from.priceUsd}} USD</p>
                     </div>
                 </div>
 
@@ -27,56 +27,56 @@
                 <div class="items__block">
                     <v-autocomplete light @change="onChangeCurrency_to" :value="currency_to.id" dark outline :items="currencies"></v-autocomplete>
                     <div>
-                        <p>{{currency_to.price_usd}} USD</p>
+                        <p>{{currency_to.priceUsd}} USD</p>
                     </div>
                 </div>
             </div>
 
             <div class="result" v-if="currency_from.id && currency_to.id">
                 <p>{{currency_from_amount}} {{currency_from.id}} =
-                    <b>{{currency_from.price_usd * currency_from_amount / currency_to.price_usd}}</b> {{currency_to.id}}</p>
+                    <b>{{currency_from.priceUsd * currency_from_amount / currency_to.priceUsd}}</b> {{currency_to.id}}</p>
             </div>
 
             <div class="charts">
-                <chart-component :cname="currency_from.display_name" :cid="currency_from.id"></chart-component>
-                <chart-component :cname="currency_to.display_name" :cid="currency_to.id"></chart-component>
+                <chart-component :cname="currency_from.name" :cid="currency_from.id"></chart-component>
+                <chart-component :cname="currency_to.name" :cid="currency_to.id"></chart-component>
             </div>
 
             <div class="popular">
                 <div class="popular__title">Popular Cryptocurrency Conversions</div>
                 <div class="popular__columns">
                     <ul class="popular__column">
-                        <li @click="changeCurrencies('BTC', 'USD')">BTC to USD</li>
-                        <li @click="changeCurrencies('BTC', 'EUR')">BTC to EUR</li>
-                        <li @click="changeCurrencies('BTC', 'GBP')">BTC to GBP</li>
-                        <li @click="changeCurrencies('BTC', 'JPY')">BTC to JPY</li>
-                        <li @click="changeCurrencies('BTC', 'LTC')">BTC to LTC</li>
-                        <li @click="changeCurrencies('BTC', 'ZEC')">BTC to ZEC</li>
-                        <li @click="changeCurrencies('BTC', 'ETH')">BTC to ETH</li>
-                        <li @click="changeCurrencies('BTC', 'XRP')">BTC to XRP</li>
-                        <li @click="changeCurrencies('BTC', 'BCH')">BTC to BCH</li>
+                        <li @click="changeCurrencies('bitcoin', 'USD')">BTC to USD</li>
+                        <li @click="changeCurrencies('bitcoin', 'EUR')">BTC to EUR</li>
+                        <li @click="changeCurrencies('bitcoin', 'GBP')">BTC to GBP</li>
+                        <li @click="changeCurrencies('bitcoin', 'JPY')">BTC to JPY</li>
+                        <li @click="changeCurrencies('bitcoin', 'LTC')">BTC to LTC</li>
+                        <li @click="changeCurrencies('bitcoin', 'ZEC')">BTC to ZEC</li>
+                        <li @click="changeCurrencies('bitcoin', 'ethereum')">BTC to ETH</li>
+                        <li @click="changeCurrencies('bitcoin', 'xrp')">BTC to XRP</li>
+                        <li @click="changeCurrencies('bitcoin', 'BCH')">BTC to BCH</li>
                     </ul>
                     <ul class="popular__column">
-                        <li @click="changeCurrencies('ETH', 'USD')">ETH to USD</li>
-                        <li @click="changeCurrencies('ETH', 'EUR')">ETH to EUR</li>
-                        <li @click="changeCurrencies('ETH', 'GBP')">ETH to GBP</li>
-                        <li @click="changeCurrencies('ETH', 'JPY')">ETH to JPY</li>
-                        <li @click="changeCurrencies('ETH', 'LTC')">ETH to LTC</li>
-                        <li @click="changeCurrencies('ETH', 'ZEC')">ETH to ZEC</li>
-                        <li @click="changeCurrencies('ETH', 'BTC')">ETH to BTC</li>
-                        <li @click="changeCurrencies('ETH', 'XRP')">ETH to XRP</li>
-                        <li @click="changeCurrencies('ETH', 'BCH')">ETH to BCH</li>
+                        <li @click="changeCurrencies('ethereum', 'USD')">ETH to USD</li>
+                        <li @click="changeCurrencies('ethereum', 'EUR')">ETH to EUR</li>
+                        <li @click="changeCurrencies('ethereum', 'GBP')">ETH to GBP</li>
+                        <li @click="changeCurrencies('ethereum', 'JPY')">ETH to JPY</li>
+                        <li @click="changeCurrencies('ethereum', 'LTC')">ETH to LTC</li>
+                        <li @click="changeCurrencies('ethereum', 'ZEC')">ETH to ZEC</li>
+                        <li @click="changeCurrencies('ethereum', 'bitcoin')">ETH to BTC</li>
+                        <li @click="changeCurrencies('ethereum', 'xrp')">ETH to XRP</li>
+                        <li @click="changeCurrencies('ethereum', 'BCH')">ETH to BCH</li>
                     </ul>
                     <ul class="popular__column">
-                        <li @click="changeCurrencies('XRP', 'USD')">XRP to USD</li>
-                        <li @click="changeCurrencies('XRP', 'EUR')">XRP to EUR</li>
-                        <li @click="changeCurrencies('XRP', 'GBP')">XRP to GBP</li>
-                        <li @click="changeCurrencies('XRP', 'JPY')">XRP to JPY</li>
-                        <li @click="changeCurrencies('XRP', 'LTC')">XRP to LTC</li>
-                        <li @click="changeCurrencies('XRP', 'ZEC')">XRP to ZEC</li>
-                        <li @click="changeCurrencies('XRP', 'BTC')">XRP to BTC</li>
-                        <li @click="changeCurrencies('XRP', 'ETH')">XRP to ETH</li>
-                        <li @click="changeCurrencies('XRP', 'BCH')">XRP to BCH</li>
+                        <li @click="changeCurrencies('xrp', 'USD')">XRP to USD</li>
+                        <li @click="changeCurrencies('xrp', 'EUR')">XRP to EUR</li>
+                        <li @click="changeCurrencies('xrp', 'GBP')">XRP to GBP</li>
+                        <li @click="changeCurrencies('xrp', 'JPY')">XRP to JPY</li>
+                        <li @click="changeCurrencies('xrp', 'LTC')">XRP to LTC</li>
+                        <li @click="changeCurrencies('xrp', 'ZEC')">XRP to ZEC</li>
+                        <li @click="changeCurrencies('xrp', 'bitcoin')">XRP to BTC</li>
+                        <li @click="changeCurrencies('xrp', 'ethereum')">XRP to ETH</li>
+                        <li @click="changeCurrencies('xrp', 'BCH')">XRP to BCH</li>
                     </ul>
                     <ul class="popular__column">
                         <li @click="changeCurrencies('BCH', 'USD')">BCH to USD</li>
@@ -85,9 +85,9 @@
                         <li @click="changeCurrencies('BCH', 'JPY')">BCH to JPY</li>
                         <li @click="changeCurrencies('BCH', 'LTC')">BCH to LTC</li>
                         <li @click="changeCurrencies('BCH', 'ZEC')">BCH to ZEC</li>
-                        <li @click="changeCurrencies('BCH', 'BTC')">BCH to BTC</li>
-                        <li @click="changeCurrencies('BCH', 'ETH')">BCH to ETH</li>
-                        <li @click="changeCurrencies('BCH', 'XRP')">BCH to XRP</li>
+                        <li @click="changeCurrencies('BCH', 'bitcoin')">BCH to BTC</li>
+                        <li @click="changeCurrencies('BCH', 'ethereum')">BCH to ETH</li>
+                        <li @click="changeCurrencies('BCH', 'xrp')">BCH to XRP</li>
                     </ul>
                 </div>
             </div>

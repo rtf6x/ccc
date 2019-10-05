@@ -4,7 +4,7 @@ import {createStore} from './store';
 import {createRouter} from './router';
 import {sync} from 'vuex-router-sync';
 import titleMixin from './util/title';
-import './plugins/vuetify'
+import vuetify from './plugins/vuetify';
 
 // mixin for handling title
 Vue.mixin(titleMixin);
@@ -24,6 +24,7 @@ export function createApp() {
   // here we inject the router, store and ssr context to all child components,
   // making them available everywhere as `this.$router` and `this.$store`.
   const app = new Vue({
+    vuetify,
     router,
     store,
     render: h => h(App)

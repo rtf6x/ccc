@@ -20,18 +20,21 @@ export default {
       let line = 'M 9.5,';
 
       state.currency_histories[this.cid].forEach(point => {
-        if (point[0] > maxX) maxX = point[0];
-        if (point[1] > maxY) maxY = point[1];
-        if (point[0] < minX) minX = point[0];
-        if (point[1] < minY) minY = point[1];
+        point.priceUsd = Math.floor(point.priceUsd * 1000);
+        if (point.priceUsd > maxX) maxX = point.priceUsd;
+        if (point.priceUsd > maxY) maxY = point.priceUsd;
+        if (point.priceUsd < minX) minX = point.priceUsd;
+        if (point.priceUsd < minY) minY = point.priceUsd;
       });
 
       minY = minY - (minY / 10);
       maxY = maxY + (maxY / 10);
 
       state.currency_histories[this.cid].forEach((point, i) => {
+        console.log('point', point.priceUsd);
+        console.log('point', point);
         point.posX = (spaceBetweenPoints * i) + 10;
-        point.posY = minYpx - ((minYpx - maxYpx) / 100 * (100 - (100 / ((maxY - minY) / (maxY - point[1])))));
+        point.posY = minYpx - ((minYpx - maxYpx) / 100 * (100 - (100 / ((maxY - minY) / (maxY - point.priceUsd)))));
         if (i === 0) {
           line += point.posY;
         } else {

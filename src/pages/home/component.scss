@@ -17,9 +17,11 @@
 .items {
   display: flex;
   align-content: space-between;
+
   &__block {
     flex: 1 1 auto;
     width: 40%;
+
     &-amount {
       width: 120px;
     }
@@ -28,6 +30,7 @@
 
 .swap_button {
   margin: 15px 20px 0;
+
   i {
     cursor: pointer;
   }
@@ -38,6 +41,7 @@
   align-content: space-around;
   justify-content: center;
   margin: 0 20px 0 0;
+
   &__value {
     font: bold 16px/44px 'OpenSans';
     height: 56px;
@@ -46,14 +50,17 @@
     margin: 0 0 20px;
     border-bottom: 2px solid #ffffffb3;
     text-align: center;
+
     &:hover {
       border-bottom: 2px solid #fff;
     }
   }
+
   *::selection {
     background: transparent;
     color: #ffffff;
   }
+
   i {
     cursor: pointer;
     height: 60px;
@@ -70,12 +77,15 @@
     font-weight: bold;
     padding-bottom: 20px;
   }
+
   &__columns {
     display: flex;
   }
+
   &__column {
     padding: 0 20px;
     flex: 1 0 auto;
+
     li {
       list-style: none;
       cursor: pointer;
@@ -89,29 +99,29 @@
   text-align: center;
 }
 
-/deep/ .v-select__selections {
+::v-deep .v-select__selections {
   padding-top: 0 !important;
 }
 
-/deep/ .v-select__slot input {
+::v-deep .v-select__slot input {
   position: relative;
   top: -12px;
 }
 
-/deep/ .theme--dark.v-list {
+::v-deep .theme--dark.v-list {
   background: #17181b !important;
 }
 
-/deep/ .v-list__tile.primary--text {
+::v-deep .v-list__tile.primary--text {
   background: #444444;
   color: #000 !important;
 }
 
-/deep/ .theme--dark.v-list .v-list__tile__mask {
+::v-deep .theme--dark.v-list .v-list__tile__mask {
   background: transparent;
   color: #5f5;
 }
 
-/deep/ .v-input__control .v-input__slot {
+::v-deep .v-input__control .v-input__slot {
   cursor: default;
 }

@@ -1,23 +1,25 @@
 import fetch from 'isomorphic-fetch';
 
 export default {
-  loadCurrencies({commit, dispatch}) {
+  loadCurrencies({ commit, dispatch }) {
     return new Promise((resolve, reject) => {
-      fetch('http://coincap.io/coins', {
+      fetch('/api/v2/assets?limit=2000', {
         headers: {
           'Content-Type': 'application/json',
           'set-cookie': ''
         }
       }).then(response => {
-        if (response.status >= 400) {
+        if (response.status !== 200) {
           throw new Error('Bad response from server');
         }
         return response.json();
       }).then(response => {
-        response.sort();
-        commit('currenciesLoaded', response);
-        dispatch('changeCurrency_from', response[0]);
-        dispatch('changeCurrency_to', response[1]);
+        response.data.sort((a, b) => {
+          return a.id.localeCompare(b.id);
+        });
+        commit('currenciesLoaded', response.data.map(c => c.id));
+        dispatch('changeCurrency_from', response.data[0].id);
+        dispatch('changeCurrency_to', response.data[1].id);
         resolve();
       }).catch(err => {
         reject(err);
@@ -25,17 +27,22 @@ export default {
     });
   },
 
-  loadCurrencyPrice({commit, dispatch, state}, cName) {
+  loadCurrencyPrice({ commit, dispatch, state }, cName) {
     return new Promise((resolve, reject) => {
       if (state.currency_prices[cName]) return resolve();
       dispatch('loadCurrencyHistory', cName);
-      fetch(`http://coincap.io/page/${cName}`).then(response => {
-        if (response.status >= 400) {
+      fetch(`/api/v2/assets/${cName}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'set-cookie': ''
+        }
+      }).then(response => {
+        if (response.status !== 200) {
           throw new Error('Bad response from server');
         }
         return response.json();
       }).then(response => {
-        commit('currencyPriceLoaded', response);
+        commit('currencyPriceLoaded', response.data);
         resolve();
       }).catch(err => {
         reject(err);
@@ -43,16 +50,21 @@ export default {
     });
   },
 
-  loadCurrencyHistory({commit, state}, cName) {
+  loadCurrencyHistory({ commit, state }, cName) {
     return new Promise((resolve, reject) => {
       if (state.currency_prices[cName]) return resolve();
-      fetch(`http://coincap.io/history/${cName}`).then(response => {
-        if (response.status >= 400) {
+      fetch(`/api/v2/assets/${cName}/history?interval=d1`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'set-cookie': ''
+        }
+      }).then(response => {
+        if (response.status !== 200) {
           throw new Error('Bad response from server');
         }
         return response.json();
       }).then(response => {
-        if (response) commit('currencyHistoryLoaded', {id: cName, history: response.price});
+        if (response) commit('currencyHistoryLoaded', { id: cName, history: response.data });
         resolve();
       }).catch(err => {
         reject(err);
@@ -60,14 +72,14 @@ export default {
     });
   },
 
-  changeCurrency_from_amount({commit}, amount) {
+  changeCurrency_from_amount({ commit }, amount) {
     return new Promise((resolve) => {
       commit('currencyChanged_from_amount', amount);
       resolve();
     });
   },
 
-  changeCurrency_from({commit, dispatch, state}, cName) {
+  changeCurrency_from({ commit, dispatch, state }, cName) {
     return new Promise((resolve) => {
       commit('currencyChanged_from', cName);
       if (state.currency_prices[cName]) {
@@ -79,7 +91,7 @@ export default {
     });
   },
 
-  changeCurrency_to({commit, dispatch, state}, cName) {
+  changeCurrency_to({ commit, dispatch, state }, cName) {
     return new Promise((resolve) => {
       commit('currencyChanged_to', cName);
       if (state.currency_prices[cName]) {
@@ -91,7 +103,7 @@ export default {
     });
   },
 
-  changeCurrency_rotate({dispatch, state}) {
+  changeCurrency_rotate({ dispatch, state }) {
     return new Promise((resolve) => {
       let to = state.currency_to.id;
       let from = state.currency_from.id;

@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
-const {VueLoaderPlugin} = require('vue-loader');
+const { VueLoaderPlugin } = require('vue-loader');
 
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -46,34 +46,28 @@ module.exports = {
         }
       },
       {
-        test: /\.less$/,
-        use: isProd
-          ? ExtractTextPlugin.extract({
-            use: [
-              {
-                loader: 'css-loader',
-                options: {minimize: true}
-              },
-              'less-loader'
-            ],
-            fallback: 'vue-style-loader'
-          })
-          : ['vue-style-loader', 'css-loader', 'less-loader']
+        test: /\.s[ac]ss$/i,
+        use: ['vue-style-loader', 'css-loader', 'sass-loader'],
       },
       {
-        test: /\.styl(us)?$/,
-        use: isProd
-          ? ExtractTextPlugin.extract({
-            use: [
-              {
-                loader: 'css-loader',
-                options: {minimize: true}
-              },
-              'stylus-loader'
-            ],
-            fallback: 'vue-style-loader'
-          })
-          : ['vue-style-loader', 'css-loader', 'stylus-loader']
+        test: /\.css$/i,
+        use: ['vue-style-loader', 'css-loader'],
+      },
+      {
+        test: /\.eot$/i,
+        use: ['file-loader'],
+      },
+      {
+        test: /\.woff$/i,
+        use: ['file-loader'],
+      },
+      {
+        test: /\.woff2$/i,
+        use: ['file-loader'],
+      },
+      {
+        test: /\.ttf$/i,
+        use: ['file-loader'],
       },
     ]
   },
@@ -81,13 +75,10 @@ module.exports = {
     maxEntrypointSize: 300000,
     hints: isProd ? 'warning' : false
   },
+  mode: 'production',
   plugins: isProd
     ? [
       new VueLoaderPlugin(),
-      new webpack.optimize.UglifyJsPlugin({
-        compress: {warnings: false}
-      }),
-      new webpack.optimize.ModuleConcatenationPlugin(),
       new ExtractTextPlugin({
         filename: 'common.[chunkhash].css'
       })
