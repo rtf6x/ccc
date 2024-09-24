@@ -14,12 +14,13 @@ export default {
         }
         return response.json();
       }).then(response => {
-        response.data.sort((a, b) => {
+        const currencies = response.data.filter(c => !!c.id);
+        currencies.sort((a, b) => {
           return a.id.localeCompare(b.id);
         });
-        commit('currenciesLoaded', response.data.map(c => c.id));
-        dispatch('changeCurrency_from', response.data[0].id);
-        dispatch('changeCurrency_to', response.data[1].id);
+        commit('currenciesLoaded', currencies.map(c => c.id));
+        dispatch('changeCurrency_from', currencies[0].id);
+        dispatch('changeCurrency_to', currencies[1].id);
         resolve();
       }).catch(err => {
         reject(err);
